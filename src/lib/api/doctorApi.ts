@@ -147,7 +147,7 @@ export const doctorApi = {
   },
 
   getAvailability: async (doctorId: string): Promise<AvailabilityRule[]> => {
-    const response = await fetchApi(`/doctors/${doctorId}/availability/`, {
+    const response = await fetchApi(`/doctors/${doctorId}/availability`, {
       method: 'GET',
     });
     if (!response.ok) throw new Error('Failed to fetch availability');
@@ -155,7 +155,7 @@ export const doctorApi = {
   },
 
   createAvailability: async (doctorId: string, data: Partial<AvailabilityRule>): Promise<AvailabilityRule> => {
-    const response = await fetchApi(`/doctors/${doctorId}/availability/`, {
+    const response = await fetchApi(`/doctors/${doctorId}/availability`, {
       method: 'POST',
       body: JSON.stringify(data),
     });
@@ -251,7 +251,7 @@ export const doctorApi = {
   },
 
   getDoctorById: async (doctorId: string): Promise<any> => {
-    const response = await fetchApi(`/doctors/${doctorId}/`, {
+    const response = await fetchApi(`/doctors/${doctorId}`, {
       method: 'GET',
     });
     if (!response.ok) throw new Error('Failed to fetch doctor');

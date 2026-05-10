@@ -107,7 +107,7 @@ export const providerApi = {
 
   /** GET /doctors/{id} — public, single doctor */
   async getDoctor(id: string): Promise<DoctorOut> {
-    const res = await fetchApi(`/doctors/${id}/`, { method: 'GET' });
+    const res = await fetchApi(`/doctors/${id}`, { method: 'GET' });
     if (!res.ok) throw new Error(`API error ${res.status}: ${res.statusText}`);
     return res.json();
   },
@@ -121,7 +121,7 @@ export const providerApi = {
 
   /** GET /clinics/{id} — public, single clinic */
   async getClinic(id: string): Promise<ClinicOut> {
-    const res = await fetchApi(`/clinics/${id}/`, { method: 'GET' });
+    const res = await fetchApi(`/clinics/${id}`, { method: 'GET' });
     if (!res.ok) throw new Error(`API error ${res.status}: ${res.statusText}`);
     return res.json();
   },
