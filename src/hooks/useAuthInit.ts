@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { useAuthStore } from '../lib/store/authStore';
 import { authApi } from '../lib/api/authApi';
 import { profileApi } from '../lib/api/profileApi';
+import { getCookie } from '../lib/utils/cookieUtils';
 
 /**
  * Hook to initialize authentication from localStorage on app load
@@ -13,7 +14,7 @@ export const useAuthInit = () => {
   useEffect(() => {
     const initializeAuthFromStorage = async () => {
       setIsLoading(true);
-      const accessToken = localStorage.getItem('access_token');
+      const accessToken = getCookie('access_token');
       
       if (accessToken) {
         try {

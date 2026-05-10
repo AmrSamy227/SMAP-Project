@@ -1,6 +1,13 @@
 import { create } from 'zustand';
-import { persist } from 'zustand/middleware';
+import { persist, createJSONStorage, StateStorage } from 'zustand/middleware';
 import { UserProfile, ClinicAccount, DoctorAccount } from '../api/profileApi';
+import { getCookie, setCookie, removeCookie } from '../utils/cookieUtils';
+
+const cookieStorage: StateStorage = {
+  getItem: (name) => getCookie(name),
+  setItem: (name, value) => setCookie(name, value, 30),
+  removeItem: (name) => removeCookie(name),
+};
 
 export interface User {
   uuid: string;
@@ -49,7 +56,7 @@ export const useAuthStore = create<AuthState>()(
       },
 
       logout: () => {
-        localStorage.removeItem('access_token');
+        removeCookie('access_token');
         set({ user: null, isAuthenticated: false, error: null });
       },
 
@@ -67,6 +74,7 @@ export const useAuthStore = create<AuthState>()(
     }),
     {
       name: 'auth-storage',
+      storage: createJSONStorage(() => cookieStorage),
     }
   )
 );

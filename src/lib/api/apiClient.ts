@@ -1,4 +1,5 @@
 import { useAuthStore } from '../store/authStore';
+import { getCookie, removeCookie } from '../utils/cookieUtils';
 
 const API_BASE_URL = '/api';
 
@@ -7,7 +8,7 @@ interface RequestOptions extends RequestInit {
 }
 
 export async function fetchApi(endpoint: string, options: RequestOptions = {}) {
-  const token = localStorage.getItem('access_token');
+  const token = getCookie('access_token');
   
   const isFormData = options.body instanceof FormData;
   
@@ -31,7 +32,7 @@ export async function fetchApi(endpoint: string, options: RequestOptions = {}) {
       
       // Clear auth state and storage
       useAuthStore.getState().logout();
-      localStorage.removeItem('access_token');
+      removeCookie('access_token');
       
       // Force redirect to login page if not already there
       if (!window.location.pathname.includes('/login')) {

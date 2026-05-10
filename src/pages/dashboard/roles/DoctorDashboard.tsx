@@ -15,6 +15,7 @@ import { useLanguage } from '../../../lib/i18n/LanguageContext';
 import { useAuthStore } from '../../../lib/store/authStore';
 import { doctorApi, bookingApi, Booking, Invitation } from '../../../lib/api/doctorApi';
 import { profileApi, DoctorAccount } from '../../../lib/api/profileApi';
+import { getCookie, setCookie } from '../../../lib/utils/cookieUtils';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
   AreaChart, 
@@ -44,7 +45,8 @@ export function DoctorDashboard() {
   useEffect(() => {
     if (bookings.length > 0 && doctorProfile?.consultation_price_egp && user?.uuid) {
       const storageKey = `booking_fees_${user.uuid}`;
-      const savedFees = JSON.parse(localStorage.getItem(storageKey) || '{}');
+      const savedFeesStr = getCookie(storageKey);
+      const savedFees = savedFeesStr ? JSON.parse(savedFeesStr) : {};
       let hasUpdates = false;
 
       bookings.forEach(b => {
@@ -55,7 +57,7 @@ export function DoctorDashboard() {
       });
 
       if (hasUpdates) {
-        localStorage.setItem(storageKey, JSON.stringify(savedFees));
+        setCookie(storageKey, JSON.stringify(savedFees), 30);
       }
     }
   }, [bookings, doctorProfile, user?.uuid]);
@@ -81,7 +83,8 @@ export function DoctorDashboard() {
   const feesMap = useMemo(() => {
     if (!user?.uuid) return {};
     const storageKey = `booking_fees_${user.uuid}`;
-    return JSON.parse(localStorage.getItem(storageKey) || '{}');
+    const savedFeesStr = getCookie(storageKey);
+    return savedFeesStr ? JSON.parse(savedFeesStr) : {};
   }, [bookings, user?.uuid]); // Update whenever bookings change (as they might trigger a sync)
 
   const getBookingFee = (bookingId: string) => {

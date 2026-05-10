@@ -1,4 +1,5 @@
 import { fetchApi } from './apiClient';
+import { setCookie, removeCookie } from '../utils/cookieUtils';
 
 export interface User {
   uuid: string;
@@ -107,7 +108,7 @@ class AuthApi {
       
       // Store access token in localStorage
       if (data.access_token) {
-        localStorage.setItem('access_token', data.access_token);
+        setCookie('access_token', data.access_token);
       }
 
       console.log('[v0] Login successful:', data.user);
@@ -133,7 +134,7 @@ class AuthApi {
       const data: RegisterResponse = await response.json();
       
       if (data.access_token) {
-        localStorage.setItem('access_token', data.access_token);
+        setCookie('access_token', data.access_token);
       }
 
       console.log('[v0] User registration successful:', data);
@@ -155,7 +156,7 @@ class AuthApi {
         throw new Error(errorData.detail || `Registration failed: ${response.statusText}`);
       }
       const data: RegisterResponse = await response.json();
-      if (data.access_token) localStorage.setItem('access_token', data.access_token);
+      if (data.access_token) setCookie('access_token', data.access_token);
       return data;
     } catch (error) {
       console.error('[v0] Clinic registration error:', error);
@@ -174,7 +175,7 @@ class AuthApi {
         throw new Error(errorData.detail || `Registration failed: ${response.statusText}`);
       }
       const data: RegisterResponse = await response.json();
-      if (data.access_token) localStorage.setItem('access_token', data.access_token);
+      if (data.access_token) setCookie('access_token', data.access_token);
       return data;
     } catch (error) {
       console.error('[v0] Doctor registration error:', error);
@@ -194,7 +195,7 @@ class AuthApi {
     } catch (error) {
       console.error('[v0] Logout error:', error);
     } finally {
-      localStorage.removeItem('access_token');
+      removeCookie('access_token');
     }
   }
 

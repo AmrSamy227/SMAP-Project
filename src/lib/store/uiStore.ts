@@ -1,5 +1,6 @@
 import { create } from 'zustand';
 import { Locale } from '../i18n/translations';
+import { getCookie, setCookie } from '../utils/cookieUtils';
 
 interface UiState {
   sidebarOpen: boolean;
@@ -12,7 +13,7 @@ interface UiState {
 
 const getInitialTheme = (): 'light' | 'dark' => {
   if (typeof window === 'undefined') return 'light';
-  const savedTheme = localStorage.getItem('theme') as 'light' | 'dark' | null;
+  const savedTheme = getCookie('theme') as 'light' | 'dark' | null;
   if (savedTheme) return savedTheme;
   return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
 };
@@ -24,7 +25,7 @@ export const useUiStore = create<UiState>((set) => ({
   setSidebarOpen: (isOpen) => set({ sidebarOpen: isOpen }),
   toggleTheme: () => set((state) => {
     const newTheme = state.theme === 'light' ? 'dark' : 'light';
-    localStorage.setItem('theme', newTheme);
+    setCookie('theme', newTheme);
     if (newTheme === 'dark') {
       document.documentElement.classList.add('dark');
     } else {
