@@ -1,0 +1,61 @@
+
+
+
+What did the database team build?
+
+designed a full relational database architecture covering most core platform features, including:
+Users and authentication (users)
+Roles and permissions (roles)
+User profiles and verification
+Listings/properties
+Images and amenities
+Bookings/reservations
+Reviews and ratings
+Messaging and notifications
+Availability and pricing
+
+
+How ?
+followed structured relational database design principles.
+
+	1. Centralized User Model
+	2. Proper Normalization
+	3.Strong Use of Foreign Keys
+	4. Modular Design
+
+
+Why did they build it this way?
+	1. Scalability
+	2. Maintainability
+	3. Analytics & Reporting
+	4. Security
+or 
+
+Why the Database Was Designed This Way
+	To support future scalability.
+	To keep the system organized and easy to maintain.
+	To separate different business functionalities clearly.
+	To model real-world booking workflows accurately.
+	To allow future feature expansion without redesigning the system.
+
+
+Project Success Evaluation
+	The project was successful in designing a strong core database architecture.
+	The system demonstrates good understanding of backend and relational database concepts.
+
+
+Strengths of the Design
+	Well-structured and organized schema.
+	Clear relationships between entities.
+	Scalable architecture for future development.
+	Good separation of concerns between modules.
+	Reflects real-world business processes effectively.
+	Easy to extend with additional features later.
+
+Weaknesses / Limitations
+	No integrated payment system.
+	No audit log or activity tracking system.
+	Large number of relationships may affect performance without optimization.
+	Some complexity may be unnecessary for an MVP version.
+
+

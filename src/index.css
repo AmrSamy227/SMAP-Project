@@ -1,0 +1,63 @@
+/* @import url() FONT IMPORTS MUST ALWAYS BE AT THE VERY TOP OF THIS FILE, ABOVE THE TAILWIND IMPORTS — DO NOT DELETE THIS COMMENT */
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap');
+
+/* CRITICAL: THE FOLLOWING TAILWIND IMPORTS MUST NEVER BE DELETED OR REORDERED — DO NOT DELETE THIS COMMENT */
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+/* END TAILWIND IMPORTS — ALL OTHER CSS MUST GO BELOW THIS LINE */
+
+:root {
+  --color-primary: #06b6d4;
+  --color-secondary: #0891b2;
+}
+
+:root {
+  --bg-main: #f9fafb; /* gray-50 */
+  --bg-card: #ffffff;
+  --text-main: #111827; /* gray-900 */
+  --text-muted: #6b7280; /* gray-500 */
+  --border-main: #e5e7eb; /* gray-200 */
+}
+
+.dark {
+  --bg-main: #0f172a; /* slate-900 */
+  --bg-card: #1e293b; /* slate-800 */
+  --text-main: #f3f4f6; /* gray-100 */
+  --text-muted: #9ca3af; /* gray-400 */
+  --border-main: #334155; /* slate-700 */
+}
+
+html[dir="rtl"] {
+  font-family: 'Cairo', sans-serif;
+}
+html[dir="ltr"] {
+  font-family: 'Inter', sans-serif;
+}
+body {
+  @apply bg-[var(--bg-main)] text-[var(--text-main)] antialiased transition-colors duration-300;
+}
+/* Custom scrollbar for a polished look */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  @apply bg-gray-300 dark:bg-slate-700 rounded-full;
+}
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-gray-400 dark:bg-slate-600;
+}
+
+/* Hide scrollbar utility */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
