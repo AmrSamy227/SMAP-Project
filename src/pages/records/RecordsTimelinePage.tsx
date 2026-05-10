@@ -84,7 +84,7 @@ export function RecordsTimelinePage() {
                   imageUrl: r.image_path
                     ? (r.image_path.startsWith('http')
                         ? r.image_path
-                        : `https://yousefmohamed.pythonanywhere.com/${r.image_path}`)
+                        : `/api/${r.image_path.replace(/^\//, '')}`)
                     : null
                 }
               });

@@ -1,6 +1,6 @@
 import { useAuthStore } from '../store/authStore';
 
-const API_BASE_URL = 'https://yousefmohamed.pythonanywhere.com';
+const API_BASE_URL = '/api';
 
 interface RequestOptions extends RequestInit {
   headers?: Record<string, string>;
