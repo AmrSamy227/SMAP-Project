@@ -106,7 +106,7 @@ class AuthApi {
 
       const data: LoginResponse = await response.json();
       
-      // Store access token in localStorage
+      // Store access token in cookies
       if (data.access_token) {
         setCookie('access_token', data.access_token);
       }

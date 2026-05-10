@@ -41,7 +41,7 @@ export function DoctorDashboard() {
     fetchData();
   }, []);
 
-  // Sync booking fees to localStorage
+  // Sync booking fees to cookies
   useEffect(() => {
     if (bookings.length > 0 && doctorProfile?.consultation_price_egp && user?.uuid) {
       const storageKey = `booking_fees_${user.uuid}`;

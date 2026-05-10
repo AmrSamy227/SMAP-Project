@@ -5,7 +5,7 @@ import { profileApi } from '../lib/api/profileApi';
 import { getCookie } from '../lib/utils/cookieUtils';
 
 /**
- * Hook to initialize authentication from localStorage on app load
+ * Hook to initialize authentication from cookies on app load
  * This ensures user remains logged in across page refreshes with all profile data
  */
 export const useAuthInit = () => {
