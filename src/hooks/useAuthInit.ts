@@ -9,12 +9,12 @@ import { getCookie } from '../lib/utils/cookieUtils';
  * This ensures user remains logged in across page refreshes with all profile data
  */
 export const useAuthInit = () => {
-  const { isAuthenticated, user, setLoading: setIsLoading, login, logout, initializeAuth, setUser } = useAuthStore();
+  const { token: storeToken, isAuthenticated, user, setLoading: setIsLoading, login, logout, initializeAuth, setUser } = useAuthStore();
 
   useEffect(() => {
     const initializeAuthFromStorage = async () => {
       setIsLoading(true);
-      const accessToken = getCookie('access_token');
+      const accessToken = getCookie('access_token') || storeToken;
       
       if (accessToken) {
         try {

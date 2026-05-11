@@ -42,7 +42,7 @@ export function LoginPage() {
         email,
         password,
       })
-      login(response.user)
+      login(response.user, response.access_token)
       navigate(`/${locale}/dashboard`)
     } catch (err) {
       let errorMessage = 'Login failed'

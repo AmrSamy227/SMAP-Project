@@ -962,10 +962,10 @@ function DoctorScheduleManager({ doctorId, initialClinicId }: { doctorId: string
               <div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 dark:bg-primary/10 rounded-full -mr-16 -mt-16 blur-3xl" />
             </div>
            
-            <p className="text-sm font-black text-gray-900 dark:text-white mb-6 uppercase tracking-widest flex items-center gap-2 transition-colors">
+            <div className="text-sm font-black text-gray-900 dark:text-white mb-6 uppercase tracking-widest flex items-center gap-2 transition-colors">
               <div className="w-2 h-2 bg-primary rounded-full animate-pulse" />
               {isRTL ? 'إضافة قاعدة دوام جديدة' : 'Add New Work Rule'}
-            </p>
+            </div>
 
             {/* Type Selector (Segmented Control) - Only show if not in clinic view */}
             {!initialClinicId && (

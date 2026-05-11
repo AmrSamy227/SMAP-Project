@@ -8,7 +8,8 @@ interface RequestOptions extends RequestInit {
 }
 
 export async function fetchApi(endpoint: string, options: RequestOptions = {}) {
-  const token = getCookie('access_token');
+  // Try to get token from cookie first, then fallback to authStore
+  const token = getCookie('access_token') || useAuthStore.getState().token;
   
   const isFormData = options.body instanceof FormData;
   
